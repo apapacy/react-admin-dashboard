@@ -1,15 +1,26 @@
 import UniversalRouter from 'universal-router';
 
-
 export default new UniversalRouter([
-  { path: '/form', action: form },
+  { path: '/', action: form('dashboard') },
+  { path: '/team', action: form('team') },
+  { path: '/contacts', action: form('contacts') },
+  { path: '/invoices', action: form('invoices') },
+  { path: '/form', action: form('form') },
+  { path: '/bar', action: form('bar') },
+  { path: '/pie', action: form('pie') },
+  { path: '/line', action: form('line') },
+  { path: '/faq', action: form('faq') },
+  { path: '/calendar', action: form('calendar') },
+  { path: '/georgaphy', action: form('geography') },
   { path: '(.*)', action: form },
 ])
 
-async function form(req) {
-  console.log(arguments);
-  const Form = await import('./scenes/form');
-  return {
-    page: <Form.default />,
+function form(path) {
+  return async function form(req) {
+    console.log(arguments);
+    const Form = await import(`./scenes/${path}`);
+    return {
+      page: <Form.default />,
+    }
   }
 }
