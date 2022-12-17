@@ -1,7 +1,15 @@
 import UniversalRouter from 'universal-router';
-import Form from "./scenes/form";
+
 
 export default new UniversalRouter([
-  { path: '/form', action: (req) => ({ page: <Form /> }) },
-  { path: '(.*)', action: (req) => ({ page: <Form /> })},
+  { path: '/form', action: form },
+  { path: '(.*)', action: form },
 ])
+
+async function form(req) {
+  console.log(arguments);
+  const Form = await import('./scenes/form');
+  return {
+    page: <Form.default />,
+  }
+}

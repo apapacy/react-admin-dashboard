@@ -30,10 +30,11 @@ export default function({ href }) {
   const [Component, setComponent] = useState(null)
   const handle = async ({location}) => {
     console.log('locations is', location);
-    const route = await routes.resolve(location.pathname)
+    const route = await routes.resolve(location.pathname, location)
     //const component = await import(`./riot/pages/${route.page}.riot`)
+    console.log('component is', route.page);
     setComponent(route.page);
-    console.log('component is', Component)
+    
   }
   useEffect(() => {
     const clear = history.listen(handle);
