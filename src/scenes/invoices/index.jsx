@@ -3,8 +3,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
+import { useSelector, useDispatch } from 'react-redux'
+import { init } from '../../store/invoicesSlice'
+
 
 const Invoices = () => {
+  const invoices = useSelector(state => state.invoices.items)
+  const dispatch = useDispatch()
+  dispatch(init());
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -74,7 +80,7 @@ const Invoices = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid checkboxSelection rows={invoices} columns={columns} />
       </Box>
     </Box>
   );

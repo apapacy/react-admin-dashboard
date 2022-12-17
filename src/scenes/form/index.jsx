@@ -3,12 +3,18 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../../store/counterSlice'
+
 
 const Form = () => {
+  const count = useSelector(state => state.counter.value)
+  const dispatch = useDispatch()
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
   const handleFormSubmit = (values) => {
     console.log(values);
+    dispatch(increment());
+    alert(count);
   };
 
   return (
