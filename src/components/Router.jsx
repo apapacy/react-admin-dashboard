@@ -1,3 +1,4 @@
+import { SettingsSystemDaydreamOutlined } from '@mui/icons-material';
 import { useState, useEffect, Component } from 'react';
 import history from '../history';
 import routes from '../routes';
@@ -25,6 +26,7 @@ import routes from '../routes';
   }
 }*/
 
+let initialized = false;
 
 export default function({ href }) {
   const [Component, setComponent] = useState(null)
@@ -38,7 +40,13 @@ export default function({ href }) {
   }
   useEffect(() => {
     const clear = history.listen(handle);
+    if (!initialized) {
+     initialized = true;
+     routes.resolve(window.location)
+       .then(route => setComponent(route.page));
+    }
     return clear;
   });
+
   return Component ? Component : <div>Not component is set</div>;
 }
