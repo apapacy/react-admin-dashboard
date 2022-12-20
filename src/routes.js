@@ -11,7 +11,7 @@ export default new UniversalRouter([
   { path: '/line', action: form('line') },
   { path: '/faq', action: form('faq') },
   { path: '/calendar', action: form('calendar') },
-  { path: '/georgaphy', action: form('geography') },
+  { path: '/geography', action: form('geography') },
   { path: '(.*)', action: form },
 ])
 
