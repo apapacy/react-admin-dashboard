@@ -12,6 +12,7 @@ export default new UniversalRouter([
   { path: '/faq', action: form('faq') },
   { path: '/calendar', action: form('calendar') },
   { path: '/geography', action: form('geography') },
+  { path: '/schema', action: form('schema') },
   { path: '(.*)', action: form },
 ])
 
